@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:owner_app/pages/login_page.dart';
 import 'package:owner_app/providers/login_provider.dart';
+import 'package:owner_app/providers/orders_history_provider.dart';
+import 'package:owner_app/providers/our_specialist_provider.dart';
 import 'package:owner_app/providers/signup_provider.dart';
 import 'package:owner_app/providers/verification_provider.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +26,12 @@ class MyApp extends StatelessWidget {
           ),
            ChangeNotifierProvider(
             create: (_) => VerificationProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => OurSpecialistProvider(),
+          ),
+           ChangeNotifierProvider(
+            create: (_) => OrdersHistoryProvider(),
           ),
       ],
       child: MaterialApp(

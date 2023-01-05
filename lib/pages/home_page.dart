@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:owner_app/pages/login_page.dart';
+import 'package:owner_app/pages/orders_notifications_page.dart';
 import 'package:owner_app/pages/our_specialists_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -113,6 +115,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                                     ListTile(
+                                       onTap: (){
+                      Navigator.push(context, 
+                      MaterialPageRoute(builder: (context) => const OrdersNotificationsPage())
+                      );
+                    },
                     contentPadding: const EdgeInsets.all(0),
                     leading: CircleAvatar(
                              backgroundColor: const Color(0xFFCA987E).withOpacity(0.4),
@@ -130,6 +137,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                                     ListTile(
+                                       onTap: (){
+                      Navigator.push(context, 
+                      MaterialPageRoute(builder: (context) => const LoginPage())
+                      );
+                    },
                     contentPadding: const EdgeInsets.all(0),
                     leading: CircleAvatar(
                              backgroundColor: const Color(0xFFCA987E).withOpacity(0.4),
