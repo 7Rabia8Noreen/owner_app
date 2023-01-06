@@ -67,8 +67,13 @@ class _OurSpecialistsPageState extends State<OurSpecialistsPage> {
                                 leading: CircleAvatar(
                                    backgroundColor: Color(0xFFF2E4D9),
                                 
-                                   child: Image.asset('assets/images/specialist_image.png',
-                                   fit: BoxFit.fill,
+                                   child:  ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10)
+                                    ),
+                                     child: Image.network("https://quiz.tadbeer.ga/${dp.workerDetails[index].image}",
+                                       fit: BoxFit.fill,
+                                                                       ),
                                    ),
                                 ),
                                
@@ -109,7 +114,19 @@ class _OurSpecialistsPageState extends State<OurSpecialistsPage> {
                               ),
                               children: [
                                 ListTile(
-                                  leading: CircleAvatar(child: Image.network(dp.workerDetails[index].salons['featured_image'])),
+                                  leading: CircleAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    child:
+                                   ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10)
+                                    ),
+                                  //  clipBehavior: Clip.hardEdge,
+                                     child: Image.network(dp.workerDetails[index].salons['featured_image'],
+                                     fit: BoxFit.fill,
+                                                                     ),
+                                   ),
+                                  ),
                                   title: Text(dp.workerDetails[index].salons['name']),
                                   subtitle: Text(dp.workerDetails[index].salons['description']),
                                   trailing: Text(dp.workerDetails[index].salons['status']==1 ? 'Open' :'Closed',

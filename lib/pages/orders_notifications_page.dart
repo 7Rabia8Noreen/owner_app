@@ -109,9 +109,15 @@ class _OrdersNotificationsPageState extends State<OrdersNotificationsPage> {
                     ),
                   ),
                   children: [
+                  
                     ListTile(
                       leading: CircleAvatar(
-                        child: Image.network(dp.ordersHistory[index].salons['featured_image']),
+                        backgroundColor: Colors.transparent,
+                        child:  ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10)
+                                    ),
+                          child: Image.network(dp.ordersHistory[index].salons['featured_image'])),
                       ),
                       title: Text(dp.ordersHistory[index].salons['name'],
                        style: GoogleFonts.urbanist(
