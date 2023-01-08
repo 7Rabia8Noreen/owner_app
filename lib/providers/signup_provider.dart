@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:owner_app/pages/login_page.dart';
 import 'package:owner_app/providers/verification_provider.dart';
+import 'package:owner_app/providers/verify_email_provider.dart';
 import 'package:provider/provider.dart';
 
 
@@ -34,21 +35,31 @@ class SignupProvider with ChangeNotifier {
       Logger().i(res.toString());
       Map<String, dynamic> mp = jsonDecode(res.toString());
       if (mp['code']==200) {
-        emailController.clear();
+       // emailController.clear();
         nameController.clear();
         passwordController.clear();
   
         Logger().i(mp['accessToken']);
+        Logger().i(mp['data']['email']);
 
         final token=mp['accessToken'];
+        final email=mp['data']['email'];
 
-        Provider.of<VerificationProvider>(context, listen: false).submitVerifyEmail(
-       token,
-        context);      
+      //   Provider.of<VerificationProvider>(context, listen: false).submitVerifyEmail(
+      //  token,
+      //   context);    
+      
+       Provider.of<VerifyEmailProvider>(context, listen: false).submitVerifyEmail(
+        email,
+        token,
+         context);
+       
       }
       else{
-         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Something went wrong try again'), backgroundColor: Colors.red));
+         final box = GetStorage();
+            box.write('isLoading', false);
+         ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+            content: Text('Email Already In Use'), backgroundColor: Colors.red));
       }
     } on RemoteException catch (e) {
       Logger().e(e.dioError);

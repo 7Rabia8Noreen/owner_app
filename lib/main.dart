@@ -5,6 +5,7 @@ import 'package:owner_app/providers/orders_history_provider.dart';
 import 'package:owner_app/providers/our_specialist_provider.dart';
 import 'package:owner_app/providers/signup_provider.dart';
 import 'package:owner_app/providers/verification_provider.dart';
+import 'package:owner_app/providers/verify_email_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
           ),
            ChangeNotifierProvider(
             create: (_) => OrdersHistoryProvider(),
+          ),
+           ChangeNotifierProvider(
+            create: (_) => VerifyEmailProvider(),
           ),
       ],
       child: MaterialApp(

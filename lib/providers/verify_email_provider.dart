@@ -11,11 +11,11 @@ import '../errors/exceptions.dart';
 import '../networks/network_client.dart';
 import '../pages/login_page.dart';
 
-class VerificationProvider with ChangeNotifier {
+class VerifyEmailProvider with ChangeNotifier {
 
   NetworkClient networkClient = NetworkClient();
 
-  Future<void> submitVerifyEmail(final token,
+  Future<void> submitVerifyEmail(final email, final token,
       BuildContext context) async {
     try {
 
@@ -28,15 +28,16 @@ class VerificationProvider with ChangeNotifier {
           ),
         );
 }
-      final result = await networkClient.post(
-          '/email/verification-notification',
+      final result = await networkClient.get(
+          '/send-verify-mail/${email}',
           {
             
           },
-          token: token );
+          token: token
+           );
           Logger().i(result.toString());
           Map<String, dynamic> map = jsonDecode(result.toString());
-           if (map['status']=='verification-link-send'){
+           if (map['msg']=='Mail send Successfully!'){
               
            final box = GetStorage();
             box.write('isLoading', false);

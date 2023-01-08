@@ -53,7 +53,7 @@ class LoginProvider with ChangeNotifier {
       }
       else{
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Something went wrong try again'), backgroundColor: Colors.red));
+            content: Text('Incorrect Credentials or please verified your email first'), backgroundColor: Colors.red));
       }
     } on RemoteException catch (e) {
       Logger().e(e.dioError);
