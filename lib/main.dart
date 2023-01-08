@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:owner_app/pages/login_page.dart';
 import 'package:owner_app/providers/login_provider.dart';
 import 'package:owner_app/providers/orders_history_provider.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
             create: (_) => VerifyEmailProvider(),
           ),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(

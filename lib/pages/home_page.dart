@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:owner_app/pages/login_page.dart';
 import 'package:owner_app/pages/orders_notifications_page.dart';
 import 'package:owner_app/pages/our_specialists_page.dart';
+import 'package:owner_app/services/notification_services.dart';
 
 class HomePage extends StatefulWidget {
   final int id;
@@ -22,6 +23,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var notifyHelper;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    notifyHelper= NotifyHelper();
+    notifyHelper.initializeNotification();
+    notifyHelper.requestIOSPermissions();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,8 +87,17 @@ class _HomePageState extends State<HomePage> {
                             shape: BoxShape.circle,
                             color: Color(0xFFF2E4D9)
                           ),
-                          child: const Icon(Icons.notifications,
-                          color: Color(0xFFCA987E),
+                          child: InkWell(
+                            onTap: (){
+                              notifyHelper.displayNotification(
+                                title:'Turn Reminder',
+                                body:"Your turn is after 10 minutes"
+                              );
+                              notifyHelper.scheduledNotification();
+                            },
+                            child: const Icon(Icons.notifications,
+                            color: Color(0xFFCA987E),
+                            ),
                           ),
                         ),
                       )
